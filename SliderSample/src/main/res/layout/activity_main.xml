@@ -98,92 +98,69 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="@string/refresh"
-                android:textColor="#33B5E5"
+                android:textColor="@color/colorAccent"
                 android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/tickHeight"
-                style="@style/RoboTheme"
-                android:text="@string/tickHeight" />
-
-            <SeekBar
-                android:id="@+id/tickHeightSeek"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="75"
-                android:progress="24" />
+                android:baselineAligned="false"
+                android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/barWeight"
-                style="@style/RoboTheme"
-                android:text="@string/barWeight" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
 
-            <SeekBar
-                android:id="@+id/barWeightSeek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="8"
-                android:progress="2" />
+                    <TextView
+                        android:id="@+id/min"
+                        style="@style/RoboTheme"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/minLabel" />
 
-            <TextView
-                android:id="@+id/connectingLineWeight"
-                style="@style/RoboTheme"
-                android:text="@string/connectingLineWeight" />
+                    <EditText
+                        android:id="@+id/minValue"
+                        style="@style/RoboTheme"
+                        android:layout_marginTop="0dp"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="35sp" />
+                </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/connectingLineWeightSeek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="15"
-                android:progress="4" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/thumbRadius"
-                style="@style/RoboTheme"
-                android:text="@string/thumbRadius" />
+                    <TextView
+                        android:id="@+id/max"
+                        style="@style/RoboTheme"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/maxLabel" />
 
-            <SeekBar
-                android:id="@+id/thumbRadiusSeek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="30"
-                android:progress="0" />
+                    <EditText
+                        android:id="@+id/maxValue"
+                        style="@style/RoboTheme"
+                        android:layout_marginTop="0dp"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="35sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <Button
-                android:id="@+id/barColor"
+                android:id="@+id/refreshMinMax"
                 style="@style/RoboTheme"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/barColor" />
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/refresh_minmax"
+                android:textColor="@color/colorAccent"
+                android:textSize="25sp" />
 
-            <Button
-                android:id="@+id/connectingLineColor"
-                style="@style/RoboTheme"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/connectingLineColor" />
-
-            <Button
-                android:id="@+id/thumbColorNormal"
-                style="@style/RoboTheme"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/thumbColorNormal" />
-
-            <Button
-                android:id="@+id/thumbColorPressed"
-                style="@style/RoboTheme"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/thumbColorPressed" />
-
-            <Button
-                android:id="@+id/resetThumbColors"
-                style="@style/RoboTheme"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/resetThumbColors"
-                android:textColor="@android:color/holo_red_light" />
         </LinearLayout>
     </LinearLayout>
 
