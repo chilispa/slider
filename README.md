@@ -6,6 +6,8 @@ Developers can customize the following attributes (both via XML and programmatic
 
 Supported on API Level 7 and above.
 
+Dependency
+=======
 ```
 implementation 'com.chili:slider-material:1.2'
 ```
