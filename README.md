@@ -6,6 +6,11 @@ Developers can customize the following attributes (both via XML and programmatic
 
 Supported on API Level 7 and above.
 
+```
+implementation 'com.chili:slider-material:1.2'
+```
+
+
 License
 =======
 Copyright 2013, Edmodo, Inc.
