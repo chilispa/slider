@@ -15,7 +15,6 @@ package com.chili.slider
 
 import android.graphics.Canvas
 import android.graphics.Paint
-import kotlin.math.roundToInt
 
 /**
  * This class represents the underlying gray bar in the RangeBar (without the
@@ -36,7 +35,7 @@ internal class Bar(val leftX: Float, private val mY: Float, private val barLengt
      */
     val rightX: Float = leftX + barLength
 
-    private val mDeltaMinMaxValue: Int = steps
+    private val mDeltaMinMaxValue: Float = steps.toFloat()
     private val mTickDistance: Float = barLength / mDeltaMinMaxValue
 
     private val leftLimitPercent = rightX * 0.1
@@ -56,7 +55,6 @@ internal class Bar(val leftX: Float, private val mY: Float, private val barLengt
     /**
      * Gets the x-coordinate of the nearest tick to the given x-coordinate.
      *
-     * @param x the x-coordinate to find the nearest tick for
      * @return the x-coordinate of the nearest tick
      */
     fun getNearestTickCoordinate(thumb: Thumb?): Float {
@@ -79,9 +77,9 @@ internal class Bar(val leftX: Float, private val mY: Float, private val barLengt
      */
     fun getNearestTickIndex(thumb: Thumb?): Int {
 
-        val leftPx = thumb?.x ?: 0f - this.leftX
+        val leftPx = (thumb?.x ?: 0f) - this.leftX
 
-        return (this.mDeltaMinMaxValue.toFloat() * (leftPx / this.barLength)).roundToInt()
+        return (this.mDeltaMinMaxValue * (leftPx / this.barLength)).toInt()
     }
 
 }
