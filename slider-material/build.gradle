@@ -36,7 +36,7 @@ publish {
     def artifactProjectID = 'slider-material'
     def publishVersionID = sliderVersionName
 
-    userOrg = 'chilispa'
+    userOrg = 'chili'
     repoName = 'slider'
     groupId = groupProjectID
     artifactId = artifactProjectID
