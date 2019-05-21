@@ -2,7 +2,6 @@ package com.example.slidersample
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -67,8 +66,8 @@ class MainActivity : Activity() {
         }
 
         refreshButtonMinMax.setOnClickListener {
-            val min = minEditText.text.toString().toFloat()
-            val max = maxEditText.text.toString().toFloat()
+            val min = minEditText.text.toString().toInt()
+            val max = maxEditText.text.toString().toInt()
             slider.minSliderValue = min
             slider.maxSliderValue = max
         }
