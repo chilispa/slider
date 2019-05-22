@@ -9,7 +9,7 @@ Supported on API Level 7 and above.
 Dependency
 =======
 ```
-implementation 'com.chili:slider-material:1.2'
+implementation 'com.chili:slider-material:1.3'
 ```
 
 
