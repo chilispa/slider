@@ -1,4 +1,4 @@
-RangeBar
+Slider-material
 =======
 The Slider is based on https://material.io/design/components/sliders.html of Material Design. The original project was made from https://github.com/edmodo/range-bar
 
