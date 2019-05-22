@@ -6,8 +6,6 @@ The Slider is based on https://material.io/design/components/sliders.html of Mat
 
 Developers can customize the following attributes (both via XML and programmatically):
 
-Supported on API Level 7 and above.
-
 Dependency
 =======
 ```
