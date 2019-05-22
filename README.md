@@ -2,6 +2,8 @@ RangeBar
 =======
 The Slider is based on https://material.io/design/components/sliders.html of Material Design. The original project was made from https://github.com/edmodo/range-bar
 
+![alt Screenshot](https://raw.githubusercontent.com/chilispa/slider/master/screenshot.png)
+
 Developers can customize the following attributes (both via XML and programmatically):
 
 Supported on API Level 7 and above.
