@@ -23,12 +23,10 @@ import android.util.TypedValue
  */
 internal class ConnectingLine (ctx: Context, private val mY: Float, connectingLineWeight: Float, connectingLineColor: Int) {
 
-    private val mConnectingLineWeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, connectingLineWeight, ctx.resources.displayMetrics)
-
     // Initialize the paint, set values
     private val mPaint = Paint().apply {
         this.color = connectingLineColor
-        this.strokeWidth = mConnectingLineWeight
+        this.strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, connectingLineWeight, ctx.resources.displayMetrics)
         this.isAntiAlias = true
     }
 

@@ -227,7 +227,7 @@ class Slider : View {
         // Create the underlying bar.
         val marginLeft = this.mLeftThumb?.halfWidth ?: 0f
         val barLength = w - 2 * marginLeft
-        this.mBar = Bar(marginLeft, yPos, barLength, this.stepsSize, this.mBarWeight, this.mBarColor)
+        this.mBar = Bar(marginLeft, yPos, barLength, this.context, this.stepsSize, this.mBarWeight, this.mBarColor)
 
         // Initialize thumbs to the desired indices
         this.mLeftThumb?.x = getThumbLeftPosition()
@@ -438,7 +438,7 @@ class Slider : View {
     private fun createBar() {
 
         if (this.mLeftThumb != null)
-            this.mBar = Bar(this.marginLeft, this.yPos, this.barLength, this.stepsSize, this.mBarWeight, this.mBarColor)
+            this.mBar = Bar(this.marginLeft, this.yPos, this.barLength, this.context, this.stepsSize, this.mBarWeight, this.mBarColor)
         invalidate()
     }
 
