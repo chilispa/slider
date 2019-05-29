@@ -113,6 +113,8 @@ class Slider : View {
 
     private var stepsSize: Int = 0
 
+    var debugEnable = false
+
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
@@ -344,7 +346,7 @@ class Slider : View {
      * @param rightThumbIndex Integer specifying the index of the right thumb
      */
     fun setThumbIndices(leftThumbIndex: Int, rightThumbIndex: Int) {
-        Log.d(TAG, "Set thumb indices left: $leftThumbIndex right: $rightThumbIndex")
+        log("Set thumb indices left: $leftThumbIndex right: $rightThumbIndex")
         if (indexOutOfRange(leftThumbIndex, rightThumbIndex)) {
 
             if (leftThumbIndex < this.minSliderValue) {
@@ -455,7 +457,7 @@ class Slider : View {
      * Creates two new Thumbs.
      */
     private fun createThumbs() {
-        Log.d(TAG, "create thumbs")
+        log("create thumbs")
 
         val ctx = this.context
         val yPos = this.yPos
@@ -465,10 +467,10 @@ class Slider : View {
 
         // Initialize thumbs to the desired indices
         this.mLeftThumb?.x = getThumbLeftPosition().apply {
-            Log.d(TAG, "Left thumb margin left: $this")
+            log("Left thumb margin left: $this")
         }
         this.mRightThumb?.x = getThumbRightPosition().apply {
-            Log.d(TAG, "Right thumb margin left: $this")
+            log("Right thumb margin left: $this")
         }
 
         invalidate()
@@ -550,7 +552,7 @@ class Slider : View {
             val newLeftIndex = mBar!!.getNearestTickIndex(this.mLeftThumb)
             val newRightIndex = mBar!!.getNearestTickIndex(this.mRightThumb)
 
-            Log.d(TAG, "On thumb release new indices left: $newLeftIndex right: $newRightIndex")
+            log("On thumb release new indices left: $newLeftIndex right: $newRightIndex")
             // If either of the indices have changed, update and call the listener.
             if (newLeftIndex != this.leftIndex || newRightIndex != this.rightIndex) {
 
@@ -587,7 +589,7 @@ class Slider : View {
         val newLeftIndex = this.mBar!!.getNearestTickIndex(this.mLeftThumb) + this.minSliderValue
         val newRightIndex = this.mBar!!.getNearestTickIndex(this.mRightThumb) + this.minSliderValue
 
-        Log.d(TAG, "On thumb move new index left: $newLeftIndex right: $newRightIndex")
+        log("On thumb move new index left: $newLeftIndex right: $newRightIndex")
 
         // If either of the indices have changed, update and call the listener.
         if (newLeftIndex != this.leftIndex || newRightIndex != this.rightIndex) {
@@ -606,7 +608,7 @@ class Slider : View {
      * @param thumb the thumb to press
      */
     private fun pressThumb(thumb: Thumb?) {
-        Log.d(TAG, "On Thumb press")
+        log("On Thumb press")
         if (this.mFirstSetTickCount)
             this.mFirstSetTickCount = false
         thumb?.press()
@@ -622,11 +624,17 @@ class Slider : View {
     private fun releaseThumb(thumb: Thumb?) {
 
         val nearestTickX = this.mBar?.getNearestTickCoordinate(thumb)
-        Log.d(TAG, "On Thumb release new x: $nearestTickX")
+        log("On Thumb release new x: $nearestTickX")
         thumb?.x = nearestTickX ?: 0f
         thumb?.release()
         invalidate()
         this.onSliderChangeListener?.onRelease(this, this.leftIndex, this.rightIndex)
+    }
+
+    private fun log(msg: String) {
+        if (debugEnable) {
+            Log.d(TAG, msg)
+        }
     }
 
     /**
@@ -642,7 +650,7 @@ class Slider : View {
         if (x < this.mBar!!.leftX || x > this.mBar!!.rightX) {
             // Do nothing.
         } else {
-            Log.d(TAG, "On Thumb move new x: $x")
+            log("On Thumb move new x: $x")
             thumb?.x = x
             invalidate()
         }

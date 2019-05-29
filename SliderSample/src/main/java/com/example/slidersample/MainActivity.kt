@@ -37,7 +37,8 @@ class MainActivity : Activity() {
         // Removes title bar and sets content view
         setContentView(R.layout.activity_main)
 
-        // Sets fonts for all
+        // Enable debug
+        slider.debugEnable = true
 
         // Gets the buttons references for the buttons
         val refreshButton = findViewById<Button>(R.id.refresh)
@@ -87,7 +88,7 @@ class MainActivity : Activity() {
             // Catches any IllegalArgumentExceptions; if fails, should throw
             // a dialog warning the user
             try {
-                if (!leftIndex.isEmpty() && !rightIndex.isEmpty()) {
+                if (leftIndex.isNotEmpty() && rightIndex.isNotEmpty()) {
                     val leftIntIndex = Integer.parseInt(leftIndex)
                     val rightIntIndex = Integer.parseInt(rightIndex)
 
