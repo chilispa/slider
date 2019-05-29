@@ -53,7 +53,7 @@ class Slider : View {
     private var mFirstSetTickCount = true
 
     private val mDefaultWidth = 500
-    private val mDefaultHeight = 100
+    private val mDefaultHeight = 150
 
     private var mLeftThumb: Thumb? = null
     private var mRightThumb: Thumb? = null
