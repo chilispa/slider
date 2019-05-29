@@ -93,7 +93,7 @@ class Slider : View {
      * @return float marginLeft
      */
     private val marginLeft: Float
-        get() = this.mLeftThumb?.halfWidth ?: 0f
+        get() = this.mLeftThumb?.mHalfWidthPressed ?: 0f
 
     /**
      * Get yPos in each of the public attribute methods.
@@ -227,7 +227,7 @@ class Slider : View {
         this.mRightThumb = Thumb(ctx, yPos, this.mIndicatorColor, this.mThumbRadiusDP)
 
         // Create the underlying bar.
-        val marginLeft = this.mLeftThumb?.halfWidth ?: 0f
+        val marginLeft = this.mLeftThumb?.mHalfWidthPressed ?: 0f
         val barLength = w - 2 * marginLeft
         this.mBar = Bar(marginLeft, yPos, barLength, this.context, this.stepsSize, this.mBarWeight, this.mBarColor)
 
