@@ -32,7 +32,7 @@ internal class Thumb(ctx: Context, private val mY: Float, private var indicatorC
     val halfWidth: Float
     private val halfHeight: Float
 
-    private val mHalfWidthPressed: Float
+    val mHalfWidthPressed: Float
     private val mHalfHeightPressed: Float
 
     // Indicates whether this thumb is currently pressed and active.
@@ -78,8 +78,8 @@ internal class Thumb(ctx: Context, private val mY: Float, private var indicatorC
         this.halfWidth = mThumbRadiusPx
         this.halfHeight = mThumbRadiusPx
 
-        this.mHalfWidthPressed = mThumbRadiusPx
-        this.mHalfHeightPressed = mThumbRadiusPx
+        this.mHalfWidthPressed = (mThumbRadiusPx * INDICATOR_PRESSED_SCALE_OUTSIDE)
+        this.mHalfHeightPressed = (mThumbRadiusPx * INDICATOR_PRESSED_SCALE_OUTSIDE)
 
         // Sets the minimum touchable area, but allows it to expand based on
         // image size

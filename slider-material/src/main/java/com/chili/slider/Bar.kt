@@ -16,6 +16,8 @@ package com.chili.slider
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import kotlin.math.ceil
+import kotlin.math.floor
 import android.util.TypedValue
 
 /**
@@ -41,10 +43,6 @@ internal class Bar(val leftX: Float, private val mY: Float, private val barLengt
     private val mDeltaMinMaxValue: Float = steps.toFloat()
     private val mTickDistance: Float = barLength / mDeltaMinMaxValue
 
-    private val leftLimitPercent = rightX * 0.1
-
-    private val rightLimitPercent = rightX - leftLimitPercent
-
     /**
      * Draws the bar on the given Canvas.
      *
@@ -64,12 +62,7 @@ internal class Bar(val leftX: Float, private val mY: Float, private val barLengt
 
         val nearestTickIndex = getNearestTickIndex(thumb)
 
-        val x = this.leftX + nearestTickIndex * this.mTickDistance
-        return when {
-            x < leftLimitPercent -> leftX
-            x > rightLimitPercent -> rightX
-            else -> x
-        }
+        return this.leftX + nearestTickIndex * this.mTickDistance
     }
 
     /**
@@ -82,7 +75,13 @@ internal class Bar(val leftX: Float, private val mY: Float, private val barLengt
 
         val leftPx = (thumb?.x ?: 0f) - this.leftX
 
-        return (this.mDeltaMinMaxValue * (leftPx / this.barLength)).toInt()
+        val value = (this.mDeltaMinMaxValue * (leftPx / this.barLength))
+
+        return if (leftPx > (this.rightX / 2f)) {
+            ceil(value)
+        } else {
+            floor(value)
+        }.toInt()
     }
 
 }
