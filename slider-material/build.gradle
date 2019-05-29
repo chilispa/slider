@@ -6,8 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.novoda.bintray-release'
 
-def sliderVersionCode = 7
-def sliderVersionName = "1.3.3"
+def sliderVersionCode = 8
+def sliderVersionName = "1.3.4"
 
 android {
     compileSdkVersion 28
