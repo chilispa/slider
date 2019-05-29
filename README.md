@@ -9,7 +9,7 @@ Developers can customize the following attributes (both via XML and programmatic
 Dependency
 =======
 ```
-implementation 'com.chili:slider-material:1.3.2'
+implementation 'com.chili:slider-material:1.3.3'
 ```
 
 
