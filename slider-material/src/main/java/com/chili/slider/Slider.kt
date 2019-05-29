@@ -229,7 +229,7 @@ class Slider : View {
         // Create the underlying bar.
         val marginLeft = this.mLeftThumb?.halfWidth ?: 0f
         val barLength = w - 2 * marginLeft
-        this.mBar = Bar(marginLeft, yPos, barLength, this.stepsSize, this.mBarWeight, this.mBarColor)
+        this.mBar = Bar(marginLeft, yPos, barLength, this.context, this.stepsSize, this.mBarWeight, this.mBarColor)
 
         // Initialize thumbs to the desired indices
         this.mLeftThumb?.x = getThumbLeftPosition()
@@ -440,7 +440,7 @@ class Slider : View {
     private fun createBar() {
 
         if (this.mLeftThumb != null)
-            this.mBar = Bar(this.marginLeft, this.yPos, this.barLength, this.stepsSize, this.mBarWeight, this.mBarColor)
+            this.mBar = Bar(this.marginLeft, this.yPos, this.barLength, this.context, this.stepsSize, this.mBarWeight, this.mBarColor)
         invalidate()
     }
 
@@ -513,7 +513,7 @@ class Slider : View {
 
             pressThumb(this.mLeftThumb)
 
-        } else if (this.mLeftThumb?.isPressed == false && this.mRightThumb?.isInTargetZone(x, y) == true) {
+        } else if (this.mRightThumb?.isPressed == false && this.mRightThumb?.isInTargetZone(x, y) == true) {
 
             pressThumb(mRightThumb)
         }
@@ -537,10 +537,9 @@ class Slider : View {
 
         } else {
 
-            val leftThumbXDistance = Math.abs(mLeftThumb?.x ?: 0f - x)
-            val rightThumbXDistance = Math.abs(mRightThumb?.x ?: 0f - x)
+            val halfBarWidth = barLength / 2f
 
-            if (leftThumbXDistance < rightThumbXDistance) {
+            if (x < halfBarWidth) {
                 this.mLeftThumb?.x = x
                 releaseThumb(this.mLeftThumb)
             } else {
@@ -549,11 +548,13 @@ class Slider : View {
             }
 
             // Get the updated nearest tick marks for each thumb.
-            val newLeftIndex = mBar!!.getNearestTickIndex(this.mLeftThumb)
-            val newRightIndex = mBar!!.getNearestTickIndex(this.mRightThumb)
+            val newLeftIndex = getNearestThumb(this.mLeftThumb)
+            val newRightIndex = getNearestThumb(this.mRightThumb)
 
             log("On thumb release new indices left: $newLeftIndex right: $newRightIndex")
             // If either of the indices have changed, update and call the listener.
+
+            this.onSliderChangeListener?.onRelease(this, newLeftIndex, newRightIndex)
             if (newLeftIndex != this.leftIndex || newRightIndex != this.rightIndex) {
 
                 this.leftIndex = newLeftIndex
@@ -563,6 +564,8 @@ class Slider : View {
             }
         }
     }
+
+    private fun getNearestThumb(thumb: Thumb?) = mBar!!.getNearestTickIndex(thumb) + this.minSliderValue
 
     /**
      * Handles a [MotionEvent.ACTION_MOVE] event.
@@ -586,8 +589,8 @@ class Slider : View {
         }
 
         // Get the updated nearest tick marks for each thumb.
-        val newLeftIndex = this.mBar!!.getNearestTickIndex(this.mLeftThumb) + this.minSliderValue
-        val newRightIndex = this.mBar!!.getNearestTickIndex(this.mRightThumb) + this.minSliderValue
+        val newLeftIndex = getNearestThumb(this.mLeftThumb)
+        val newRightIndex = getNearestThumb(this.mRightThumb)
 
         log("On thumb move new index left: $newLeftIndex right: $newRightIndex")
 

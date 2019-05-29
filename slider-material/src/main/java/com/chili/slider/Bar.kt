@@ -13,19 +13,22 @@
 
 package com.chili.slider
 
+import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.util.TypedValue
 
 /**
  * This class represents the underlying gray bar in the RangeBar (without the
  * thumbs).
  */
-internal class Bar(val leftX: Float, private val mY: Float, private val barLength: Float, steps: Int, BarWeight: Float, BarColor: Int) {
+internal class Bar(val leftX: Float, private val mY: Float, private val barLength: Float, ctx: Context, steps: Int, barWeight: Float, BarColor: Int) {
 
     private val mPaint: Paint = Paint().apply {
         this.color = BarColor
-        this.strokeWidth = BarWeight
+        this.strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, barWeight, ctx.resources.displayMetrics)
         this.isAntiAlias = true
+        this.alpha = 75
     }
 
     /**
